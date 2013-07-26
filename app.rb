@@ -35,7 +35,7 @@ class AutoBuzz < Sinatra::Base
       %{
 <Response>
   <Play>http://www.dialabc.com/i/cache/dtmfgen/wavpcm8.300/9.wav</Play>
-  <Sms to="#{PHONENUMBER}">I just let someone in the door!</Sms>
+  <Sms to="#{PHONENUMBER}">I just let someone through the door!</Sms>
 </Response>
       }
     else
@@ -57,13 +57,13 @@ class AutoBuzz < Sinatra::Base
 <Response>
   <Play>http://www.dialabc.com/i/cache/dtmfgen/wavpcm8.300/9.wav</Play>
   <Say>Welcome.</Say>
-  <Sms to="#{PHONENUMBER}">I just let someone in the door!</Sms>
+  <Sms to="#{PHONENUMBER}">I just let someone through the door!</Sms>
 </Response>
       }
     elsif params[:tries]
       %{
 <Response>
-  <Say>That password was incorrect again. I'll let you talk to a human.</Say>
+  <Say>That password was incorrect, again. I'll let you talk to a human.</Say>
   <Dial><Number>#{PHONENUMBER}</Number></Dial>
 </Response>
       }
@@ -92,15 +92,15 @@ class AutoBuzz < Sinatra::Base
 
       when /^(un)?(lock )?status/i
         if open_door?
-          return %{ <Response> <Sms>The door will open automatically for the next #{open_minutes} minutes.</Sms> </Response> }
+          return %{ <Response> <Sms>The door will stay unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
         else
-          return %{ <Response> <Sms>The door is locked. Say "unlock for [minutes]" to open it automatically.</Sms> </Response> }
+          return %{ <Response> <Sms>The door is locked. Say "unlock for [minutes]" to unlock the door.</Sms> </Response> }
         end
 
       when /^unlock for (\d+)/i
         mins = $1.to_i
         REDIS.set('autobuzz.open_until', Time.now.to_i + (mins*60))
-        return %{ <Response> <Sms>The door will open automatically for the next #{open_minutes} minutes.</Sms> </Response> }
+        return %{ <Response> <Sms>The door will now be unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
       end
     end
 
