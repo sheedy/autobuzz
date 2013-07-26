@@ -70,7 +70,7 @@ class AutoBuzz < Sinatra::Base
     else
       %{
 <Response>
-  <Gather action="/verify?tries=1" timeout="6" numDigits="4">
+  <Gather action="/verify?tries=1" timeout="6" numDigits="#{DOORCODE.length}">
     <Say>That password was incorrect. Try again.</Say>
   </Gather>
   <Say>Sorry, I could not verify your password.</Say>
