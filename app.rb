@@ -92,7 +92,7 @@ class AutoBuzz < Sinatra::Base
 
       when /^(un)?(lock )?status/i
         if open_door?
-          return %{ <Response> <Sms>The door will stay unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
+          return %{ <Response> <Sms>The door will remain unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
         else
           return %{ <Response> <Sms>The door is locked. Say "unlock for [minutes]" to unlock the door.</Sms> </Response> }
         end
@@ -100,7 +100,7 @@ class AutoBuzz < Sinatra::Base
       when /^unlock for (\d+)/i
         mins = $1.to_i
         REDIS.set('autobuzz.open_until', Time.now.to_i + (mins*60))
-        return %{ <Response> <Sms>The door will now be unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
+        return %{ <Response> <Sms>The door will now remain unlocked for the next #{open_minutes} minutes.</Sms> </Response> }
       end
     end
 
