@@ -1,5 +1,14 @@
 ## autobuzz
 
+autobuzz hooks up your apartment's call box.
+
+Features:
+
+- allows for a custom numeric password to open the door via the call box
+- sends you a text message whenever someone is let in
+- timed "auto-open" mode for when you're expecting deliveries (enabled via text message)
+- always forwards the call to your phone as a fallback
+
 ### create a heroku app
 
 ```
@@ -22,3 +31,7 @@ Point your twilio number to point to the heroku instance. Make sure you select *
 ### control via text message
 
 ![](http://f.cl.ly/items/1d1j42352s063C432b0c/image.jpg)
+
+### protips
+
+* To forward an existing Google Voice number to Twilio, use `http://twimlets.com/forward?PhoneNumber=415-555-1212` as the `Voice Request URL` to forward temporarily for verification.
