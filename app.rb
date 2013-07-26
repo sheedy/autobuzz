@@ -35,7 +35,7 @@ class AutoBuzz < Sinatra::Base
       %{
 <Response>
   <Play>http://www.dialabc.com/i/cache/dtmfgen/wavpcm8.300/9.wav</Play>
-  <Sms to="#{PHONENUMBER}">Someone just showed up at the door!</Sms>
+  <Sms to="#{PHONENUMBER}">I just let someone in the door!</Sms>
 </Response>
       }
     else
@@ -56,8 +56,8 @@ class AutoBuzz < Sinatra::Base
       %{
 <Response>
   <Play>http://www.dialabc.com/i/cache/dtmfgen/wavpcm8.300/9.wav</Play>
-  <Say>Welcome home.</Say>
-  <Sms to="#{PHONENUMBER}">Someone just showed up!</Sms>
+  <Say>Welcome.</Say>
+  <Sms to="#{PHONENUMBER}">I just let someone in the door!</Sms>
 </Response>
       }
     elsif params[:tries]
@@ -94,7 +94,7 @@ class AutoBuzz < Sinatra::Base
         if open_door?
           return %{ <Response> <Sms>The door will open automatically for the next #{open_minutes} minutes.</Sms> </Response> }
         else
-          return %{ <Response> <Sms>The door is locked. Say "unlock for [minutes]" to lock it.</Sms> </Response> }
+          return %{ <Response> <Sms>The door is locked. Say "unlock for [minutes]" to open it automatically.</Sms> </Response> }
         end
 
       when /^unlock for (\d+)/i
