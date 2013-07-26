@@ -34,4 +34,4 @@ Point your twilio number to point to the heroku instance. Make sure you select *
 
 ### protips
 
-* To forward an existing Google Voice number to Twilio, use `http://twimlets.com/forward?PhoneNumber=415-555-1212` as the `Voice Request URL` to forward temporarily for verification.
+* To forward an existing Google Voice number to Twilio, use `http://twimlets.com/forward?PhoneNumber=415-555-1212` as the `Voice Request URL` to get past verification.
