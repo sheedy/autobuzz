@@ -43,7 +43,7 @@ class AutoBuzz < Sinatra::Base
       %{
   <Response>
     <Gather action="/verify" timeout="3" numDigits="#{DOORCODE.length}">
-      <Say>One moment, connecting you</Say>
+      <Say>One moment, you are now being connected...</Say>
     </Gather>
     <Dial><Number>#{PHONENUMBER}</Number></Dial>
   </Response>
@@ -86,9 +86,9 @@ class AutoBuzz < Sinatra::Base
       when /^lock door/i
         if open_door?
           REDIS.del('autobuzz.open_until', 0)
-          return %{ <Response> <Sms>#{open_minutes} minutes were remaning, but door is now locked. Make up your mind!</Sms> </Response> }
+          return %{ <Response> <Sms>#{open_minutes} minutes were remaining, but the door is now locked.</Sms> </Response> }
         else
-          return %{ <Response> <Sms>The door was already locked. You're welcome.</Sms> </Response> }
+          return %{ <Response> <Sms>The door was already locked.</Sms> </Response> }
         end
 
       when /^(un)?(lock )?status/i
