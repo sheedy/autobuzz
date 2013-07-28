@@ -30,7 +30,7 @@ Point your twilio number to point to the heroku instance. Make sure you select *
 
 ### control via text message
 
-![](http://f.cl.ly/items/1d1j42352s063C432b0c/image.jpg)
+![](https://f.cloud.github.com/assets/2567/867804/471a2064-f739-11e2-969c-6d3126a911ad.png)
 
 ### protips
 
