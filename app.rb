@@ -34,9 +34,11 @@ class AutoBuzz < Sinatra::Base
     if open_door?
       %{
 <Response>
+  <Pause length="2"/>
   <Say>Unlocking the door.</Say>
   <Play>http://www.dialabc.com/i/cache/dtmfgen/wavpcm8.300/9.wav</Play>
   <Sms to="#{PHONENUMBER}">I just let someone through the door!</Sms>
+  <Pause length="8"/>
 </Response>
       }
     else
